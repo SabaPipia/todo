@@ -1,28 +1,32 @@
-import React from "react";
-import "./style.scss";
+import React, { useState } from "react";
 import { Check, Remove } from "../../icons";
 
-const TodoList = () => {
+import TodoItem from "./todoItem";
+import "./style.scss";
+
+interface Todo {
+  id: number | undefined;
+  text: string | undefined;
+}
+interface TodoListI {
+  todos: Todo[];
+}
+const TodoList: React.FC<TodoListI> = ({ todos }) => {
   return (
-    <div>
-      <div className="todoItem">
-        <div className="leftPart">
-          <Check />
-          <h3>first</h3>
-        </div>
-        <div className="rightPart">
-          <Remove />
-        </div>
-      </div>
-      <div className="todoItem">
-        <div className="leftPart">
-          <Check />
-          <h3>Second</h3>
-        </div>
-        <div className="rightPart">
-          <Remove />
-        </div>
-      </div>
+    <div className="todoList">
+      {todos.map((item) => {
+        return (
+          <div className="todoItem" key={item.id}>
+            <div className="leftPart">
+              <Check />
+              <span>{item.text}</span>
+            </div>
+            <div className="rightPart">
+              <Remove />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
