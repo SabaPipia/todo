@@ -1,0 +1,28 @@
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
+  border: 1px solid #c4c4c4;
+  border-top-color: #c4c4c43d;
+  border-bottom-color: #c4c4c43d;
+  svg {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    opacity: 0;
+  }
+  .leftPart {
+    display: flex;
+    align-items: center;
+    h3 {
+      font-weight: 300;
+      font-size: 25px;
+    }
+  }
+  svg:hover,
+  svg:active {
+    transition: all 0.5s;
+    opacity: 1;
+  }
+}
