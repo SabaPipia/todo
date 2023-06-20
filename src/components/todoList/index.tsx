@@ -1,27 +1,48 @@
 import React, { useState } from "react";
 import { Check, Remove } from "../../icons";
 
-import TodoItem from "./todoItem";
 import "./style.scss";
 
 interface Todo {
   id: number | undefined;
   text: string | undefined;
+  selected: boolean | undefined;
 }
 interface TodoListI {
   todos: Todo[];
+  removeTodo: (id?: number, index?: number) => void;
+  selectTodo: (id?: number, index?: number) => void;
 }
-const TodoList: React.FC<TodoListI> = ({ todos }) => {
+
+const TodoList: React.FC<TodoListI> = ({ todos, removeTodo, selectTodo }) => {
   return (
     <div className="todoList">
-      {todos.map((item) => {
+      {todos.map((item, index) => {
         return (
-          <div className="todoItem" key={item.id}>
-            <div className="leftPart">
-              <Check />
-              <span>{item.text}</span>
+          <div className="todoItem" key={index}>
+            <div
+              className="leftPart"
+              onClick={() => selectTodo(item.id, index)}
+            >
+              <div
+                className={`icon`}
+                style={{
+                  opacity: item.selected ? "1" : "",
+                }}
+              >
+                <Check />
+              </div>
+              <span
+                style={{
+                  textDecoration: item.selected ? "line-through" : "none",
+                  color: item.selected ? "#8080808a" : "",
+                  fontWeight: item.selected ? "500" : "300",
+                }}
+              >
+                {item.text}
+              </span>
             </div>
-            <div className="rightPart">
+            <div className="rightPart" onClick={() => removeTodo(item.id)}>
               <Remove />
             </div>
           </div>

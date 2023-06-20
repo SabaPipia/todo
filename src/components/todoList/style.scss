@@ -10,14 +10,26 @@
     width: 30px;
     height: 30px;
     padding: 10px;
-    opacity: 0;
+    // opacity: 0;
   }
   .leftPart {
     display: flex;
     align-items: center;
+    .icon {
+      opacity: 0;
+      &:hover {
+        transition: all 0.5s;
+        opacity: 1;
+      }
+    }
     span {
       font-weight: 300;
       font-size: 25px;
+    }
+  }
+  .rightPart {
+    svg {
+      opacity: 0;
     }
   }
   svg:hover,
