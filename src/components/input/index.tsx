@@ -2,21 +2,29 @@ import React, { useRef, useState } from "react";
 import { Arrow } from "../../icons";
 import "./style.scss";
 
+interface Todo {
+  id: number | undefined;
+  text: string | undefined;
+  selected: boolean | undefined;
+}
 interface InputI {
-  addTodo: (text?: string, id?: number) => void;
+  todo: Todo[];
+  addTodo: (text?: string, id?: number, selected?: boolean) => void;
 }
 
-const Input: React.FC<InputI> = ({ addTodo }) => {
+const Input: React.FC<InputI> = ({ addTodo, todo }) => {
   const [value, setValue] = useState<string | undefined>();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSave = () => {
     const input = inputRef.current?.value;
-    const id = Math.floor(Math.random() * Math.random() * 999999999);
-    addTodo(input, id);
+    const index = todo.length;
+    const id = index;
+    addTodo(input, id, false);
     setValue("");
   };
+
   return (
     <div className="Input">
       <Arrow />

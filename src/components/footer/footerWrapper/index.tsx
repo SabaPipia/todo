@@ -4,10 +4,14 @@ import Items from "../items";
 import Sections from "../sections";
 import "./style.scss";
 
-const FooterWrapper = () => {
+interface todo {
+  todoL: number;
+}
+
+const FooterWrapper: React.FC<todo> = ({ todoL }) => {
   return (
     <div className="footerWrapper">
-      <Items />
+      <Items todoL={todoL} />
       <Sections />
       <Clear />
     </div>
