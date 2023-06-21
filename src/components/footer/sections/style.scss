@@ -1,18 +1,17 @@
 .sections {
   color: #a5a5a5;
-
+  align-self: center;
   .sectionsUl {
     display: flex;
     list-style: none;
     gap: 20px;
     li {
       cursor: pointer;
-      padding: 4px;
-      border: 1px solid rgba(0, 0, 0, 0);
+
       &:hover,
       &:active {
-        overflow: hidden;
-        border-color: black;
+        scale: 1.1;
+        color: #6b6b6b;
       }
     }
   }

@@ -1,3 +1,12 @@
+.todoList {
+  display: flex;
+  // first
+  flex-direction: column-reverse;
+  &.last {
+    // last
+    flex-direction: column;
+  }
+}
 .todoItem {
   display: flex;
   justify-content: space-between;

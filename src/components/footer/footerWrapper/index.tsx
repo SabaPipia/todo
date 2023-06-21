@@ -4,16 +4,28 @@ import Items from "../items";
 import Sections from "../sections";
 import "./style.scss";
 
-interface todo {
-  todoL: number;
+interface Todo {
+  text: string | undefined;
+  id: number | undefined;
+  selected: boolean | undefined;
 }
 
-const FooterWrapper: React.FC<todo> = ({ todoL }) => {
+interface todoL {
+  todoL: number;
+  clear: () => void;
+}
+
+const FooterWrapper: React.FC<todoL> = ({ todoL, clear }) => {
+  // const removeTodo = (id?: number) => {
+  //   const newTodo = todos.filter((item) => item.id !== id);
+  //   setTodos([...newTodo]);
+  // };
+
   return (
     <div className="footerWrapper">
       <Items todoL={todoL} />
       <Sections />
-      <Clear />
+      <Clear clear={clear} />
     </div>
   );
 };
