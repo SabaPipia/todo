@@ -12,11 +12,16 @@ interface TodoListI {
   todos: Todo[];
   removeTodo: (id?: number, index?: number) => void;
   selectTodo: (id?: number, index?: number) => void;
+  todoClass?: string;
 }
-
-const TodoList: React.FC<TodoListI> = ({ todos, removeTodo, selectTodo }) => {
+const TodoList: React.FC<TodoListI> = ({
+  todos,
+  removeTodo,
+  selectTodo,
+  todoClass,
+}) => {
   return (
-    <div className="todoList">
+    <div className={`todoList ${todoClass}`}>
       {todos.map((item, index) => {
         return (
           <div className="todoItem" key={index}>

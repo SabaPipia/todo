@@ -2,6 +2,14 @@
   display: flex;
   // grid-template-columns: 5fr 95fr;
   position: relative;
+  .arrow {
+    &.upward {
+      transform: rotateX(0deg);
+    }
+    &.downward {
+      transform: rotateX(180deg);
+    }
+  }
   svg {
     cursor: pointer;
     width: 30px;
@@ -24,8 +32,31 @@
     border: 1px solid #c4c4c4;
     outline: none;
     font-family: "Montserrat", sans-serif;
+    // position: relative;
     &::placeholder {
       color: #c4c4c483;
     }
+  }
+  .error {
+    position: absolute;
+    left: 48px;
+    top: -18px;
+    font-size: 15px;
+    color: red;
+    font-weight: 800;
+    animation: errorShake 0.1s 4;
+  }
+}
+@keyframes errorShake {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: rotate(-0.5deg);
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: rotate(0.5deg);
+    transform: translateY(1px);
   }
 }

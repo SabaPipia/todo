@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Input from "../input";
 import TodoList from "../todoList";
 import FooterWrapper from "../footer/footerWrapper";
@@ -12,8 +12,7 @@ interface Todo {
 
 const WrapperComponent = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [isSelected, setIsSelected] = useState<boolean | undefined>(false);
-  // const [checked, setChecked] = useState<string | undefined>("");
+  const [todoClass, setTodoClass] = useState<string | undefined>();
 
   const addTodo = (text?: string, id?: number, selected?: boolean) => {
     const newTodo: Todo = { text, id, selected };
@@ -35,19 +34,29 @@ const WrapperComponent = () => {
     });
     setTodos(updatedTodos);
   };
-
+  const clearCompleted = () => {
+    const updatedTodos = todos.filter((todo) => todo.selected !== true);
+    setTodos([...updatedTodos]);
+    console.log(todos);
+  };
   return (
     <div className="wrapper">
       <h1>todos</h1>
       <div className="main">
-        <Input addTodo={addTodo} todo={todos} />
+        <Input
+          addTodo={addTodo}
+          todo={todos}
+          todoClass={todoClass}
+          setTodoClass={setTodoClass}
+        />
         <TodoList
           todos={todos}
           removeTodo={removeTodo}
           selectTodo={selectTodo}
+          todoClass={todoClass}
         />
       </div>
-      <FooterWrapper todoL={todos.length} />
+      <FooterWrapper clear={clearCompleted} todoL={todos.length} />
     </div>
   );
 };
