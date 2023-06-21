@@ -46,6 +46,14 @@
     font-weight: 800;
     animation: errorShake 0.1s 4;
   }
+  .saveButton {
+    padding: 10px 20px;
+    font-size: 22px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(0, 128, 0);
+    color: #fff;
+  }
 }
 @keyframes errorShake {
   0% {

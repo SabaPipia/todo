@@ -11,22 +11,29 @@ interface InputI {
   todo: Todo[];
   addTodo: (text?: string, id?: number, selected?: boolean) => void;
   setTodoClass: (className: string) => void;
+  setValue: (value: string) => void;
+  setEditButton: (e: boolean) => void;
+  modifyTodo: () => void;
   todoClass: string | undefined;
+  value?: string | undefined;
+  editButton: boolean;
 }
 
 const Input: React.FC<InputI> = ({
   addTodo,
+  setTodoClass,
+  setValue,
+  modifyTodo,
   todo,
   todoClass,
-  setTodoClass,
+  editButton,
+  value,
 }) => {
-  const [value, setValue] = useState<string | undefined>();
   const [error, setError] = useState<string | undefined>();
   const [isBlank, setIsBlank] = useState<string | undefined>();
   const [arrowToggle, setArrowToggle] = useState<string | undefined>(
     "downward"
   );
-
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSave = () => {
@@ -64,11 +71,16 @@ const Input: React.FC<InputI> = ({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (editButton === false && e.key === "Enter") {
             handleSave();
           }
         }}
       />
+      {editButton ? (
+        <button onClick={modifyTodo} className="saveButton">
+          Save
+        </button>
+      ) : null}
     </div>
   );
 };
