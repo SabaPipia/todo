@@ -57,7 +57,7 @@ const Input: React.FC<InputI> = ({
     const mark: any = todo.map((todo) => {
       return {
         ...todo,
-        selected: !todo.selected,
+        selected: true,
       };
     });
     setTodos(mark);
