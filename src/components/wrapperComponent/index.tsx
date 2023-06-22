@@ -42,7 +42,6 @@ const WrapperComponent = () => {
   const clearCompleted = () => {
     const updatedTodos = todos.filter((todo) => todo.selected !== true);
     setTodos([...updatedTodos]);
-    console.log(todos);
   };
   const modifyTodo = () => {
     const modifyTodo: any = todos.map((todo) => {
