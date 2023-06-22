@@ -10,21 +10,25 @@ interface Todo {
   selected: boolean | undefined;
 }
 
-interface todoL {
+interface todoI {
+  todos: Todo[];
   todoL: number;
+  selectedPage: number;
   clear: () => void;
+  setSelectedPage: (page: number) => void;
 }
 
-const FooterWrapper: React.FC<todoL> = ({ todoL, clear }) => {
-  // const removeTodo = (id?: number) => {
-  //   const newTodo = todos.filter((item) => item.id !== id);
-  //   setTodos([...newTodo]);
-  // };
-
+const FooterWrapper: React.FC<todoI> = ({
+  todos,
+  todoL,
+  selectedPage,
+  clear,
+  setSelectedPage,
+}) => {
   return (
     <div className="footerWrapper">
-      <Items todoL={todoL} />
-      <Sections />
+      <Items todo={todos} todoL={todoL} selectedPage={selectedPage} />
+      <Sections selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       <Clear clear={clear} />
     </div>
   );
