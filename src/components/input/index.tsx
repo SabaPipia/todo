@@ -14,6 +14,7 @@ interface InputI {
   setValue: (value: string) => void;
   setEditButton: (e: boolean) => void;
   modifyTodo: () => void;
+  setTodos: (todo: Todo[]) => void;
   todoClass: string | undefined;
   value?: string | undefined;
   editButton: boolean;
@@ -21,19 +22,16 @@ interface InputI {
 
 const Input: React.FC<InputI> = ({
   addTodo,
-  setTodoClass,
   setValue,
   modifyTodo,
+  setTodos,
   todo,
-  todoClass,
   editButton,
   value,
 }) => {
   const [error, setError] = useState<string | undefined>();
   const [isBlank, setIsBlank] = useState<string | undefined>();
-  const [arrowToggle, setArrowToggle] = useState<string | undefined>(
-    "downward"
-  );
+
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSave = () => {
@@ -55,13 +53,18 @@ const Input: React.FC<InputI> = ({
     }
     setValue("");
   };
-  const handleToggleDirection = () => {
-    setTodoClass(todoClass === "last" ? "" : "last");
-    setArrowToggle(arrowToggle === "downward" ? "upward" : "downward");
+  const markAll = () => {
+    const mark: any = todo.map((todo) => {
+      return {
+        ...todo,
+        selected: !todo.selected,
+      };
+    });
+    setTodos(mark);
   };
   return (
     <div className="Input">
-      <div className={`arrow ${arrowToggle}`} onClick={handleToggleDirection}>
+      <div onClick={markAll}>
         <Arrow />
       </div>
       <p className={isBlank}>{error}</p>

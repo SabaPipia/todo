@@ -16,6 +16,7 @@ const WrapperComponent = () => {
   const [todoClass, setTodoClass] = useState<string | undefined>();
   const [editButton, setEditButton] = useState<boolean>(false);
   const [modifyID, setModifyID] = useState<number | undefined>();
+  const [selectedPage, setSelectedPage] = useState(0);
 
   const addTodo = (text?: string, id?: number, selected?: boolean) => {
     const newTodo: Todo = { text, id, selected };
@@ -38,7 +39,6 @@ const WrapperComponent = () => {
     });
     setTodos(updatedTodos);
   };
-  // const modifyTodo = ()
   const clearCompleted = () => {
     const updatedTodos = todos.filter((todo) => todo.selected !== true);
     setTodos([...updatedTodos]);
@@ -51,11 +51,9 @@ const WrapperComponent = () => {
           ...todo,
           text: value,
         };
-        // console.log(todo);
       }
       return todo;
     });
-    // console.log(value);
     setTodos(modifyTodo);
     setValue("");
     setEditButton(false);
@@ -69,6 +67,7 @@ const WrapperComponent = () => {
           setValue={setValue}
           addTodo={addTodo}
           todo={todos}
+          setTodos={setTodos}
           todoClass={todoClass}
           setTodoClass={setTodoClass}
           editButton={editButton}
@@ -83,9 +82,16 @@ const WrapperComponent = () => {
           setValue={setValue}
           setEditButton={setEditButton}
           setModifyID={setModifyID}
+          selectedPage={selectedPage}
         />
       </div>
-      <FooterWrapper clear={clearCompleted} todoL={todos.length} />
+      <FooterWrapper
+        setSelectedPage={setSelectedPage}
+        selectedPage={selectedPage}
+        clear={clearCompleted}
+        todoL={todos.length}
+        todos={todos}
+      />
     </div>
   );
 };

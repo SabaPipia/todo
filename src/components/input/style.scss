@@ -1,15 +1,6 @@
 .Input {
   display: flex;
-  // grid-template-columns: 5fr 95fr;
   position: relative;
-  .arrow {
-    &.upward {
-      transform: rotateX(0deg);
-    }
-    &.downward {
-      transform: rotateX(180deg);
-    }
-  }
   svg {
     cursor: pointer;
     width: 30px;
@@ -47,12 +38,17 @@
     animation: errorShake 0.1s 4;
   }
   .saveButton {
+    cursor: pointer;
     padding: 10px 20px;
     font-size: 22px;
     border: none;
     border-radius: 8px;
     background-color: rgb(0, 128, 0);
     color: #fff;
+    &:hover,
+    &:active {
+      background-color: rgb(0, 108, 0);
+    }
   }
 }
 @keyframes errorShake {
